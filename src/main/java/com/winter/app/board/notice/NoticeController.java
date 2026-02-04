@@ -1,0 +1,71 @@
+package com.winter.app.board.notice;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
+
+import com.winter.app.board.BoardDTO;
+
+/**
+ * Servlet implementation class NoticeController
+ */
+@WebServlet("/notice/*")
+public class NoticeController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    private NoticeService noticeService;   
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public NoticeController() {
+        super();
+        // TODO Auto-generated constructor stub
+        this.noticeService = new NoticeService();
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String url = request.getRequestURI(); // /notice/list,
+		
+		url = url.substring(url.lastIndexOf("/"));
+		
+		String path="";
+		try{
+			switch(url) {
+			case "/list":
+				path="/WEB-INF/views/board/list.jsp";
+				List<BoardDTO> ar = noticeService.getList();
+				request.setAttribute("list", ar);
+				break;
+			case "/write":
+				path="/WEB-INF/views/board/write.jsp";
+				break;
+			default:
+				
+				
+			
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		request.getRequestDispatcher(path).forward(request, response);
+		
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
