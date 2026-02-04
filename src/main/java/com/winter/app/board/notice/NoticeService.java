@@ -47,8 +47,11 @@ public class NoticeService implements BoardService{
 
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con = DBConnector.getConnection();
+		
+		int result = noticeDAO.delete(con, boardDTO);
+		con.close();		
+		return result;
 	}
 
 	@Override

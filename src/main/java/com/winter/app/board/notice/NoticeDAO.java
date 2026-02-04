@@ -66,8 +66,14 @@ public class NoticeDAO implements BoardDAO {
 
 	@Override
 	public int delete(Connection con, BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "DELETE FROM notice WHERE board_id=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setLong(1, boardDTO.getBoard_id());
+		
+		
+		int result = st.executeUpdate();	
+		
+		return result;
 	}
 
 	@Override

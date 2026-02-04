@@ -110,6 +110,10 @@ public class NoticeController extends HttpServlet {
 				noticeDTO.setBoard_contents(request.getParameter("board_contents"));
 				int result = noticeService.update(noticeDTO);
 				path="./detail?board_id="+noticeDTO.getBoard_id();
+			}else if(url.equals("/delete")) {
+				noticeDTO.setBoard_id(Long.parseLong(request.getParameter("board_id")));
+				int result = noticeService.delete(noticeDTO);
+				path="./list";
 			}
 		}catch (Exception e) {
 			// TODO: handle exception
