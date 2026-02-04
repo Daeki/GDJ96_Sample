@@ -43,8 +43,11 @@ public class NoticeService implements BoardService{
 
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con = DBConnector.getConnection();
+		
+		boardDTO = noticeDAO.getDetail(con, boardDTO);
+		con.close();		
+		return boardDTO;
 	}
 
 }

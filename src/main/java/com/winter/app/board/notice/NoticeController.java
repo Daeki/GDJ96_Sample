@@ -46,6 +46,22 @@ public class NoticeController extends HttpServlet {
 			case "/write":
 				path="/WEB-INF/views/board/write.jsp";
 				break;
+			case  "/detail":
+				
+				BoardDTO boardDTO = new NoticeDTO();
+				boardDTO.setBoard_id(Long.parseLong(request.getParameter("board_id")));
+				boardDTO = noticeService.getDetail(boardDTO);
+				
+				if(boardDTO != null) {
+					request.setAttribute("dto", boardDTO);
+					path="/WEB-INF/views/board/detail.jsp";
+				}else {
+					request.setAttribute("result", "글이 없어요");
+					request.setAttribute("path", "./list");
+					path="/WEB-INF/views/common/result.jsp";
+				}
+				
+				break;
 			default:
 				
 				

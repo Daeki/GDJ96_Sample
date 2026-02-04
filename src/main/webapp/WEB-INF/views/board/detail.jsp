@@ -20,33 +20,17 @@
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
                     <div class="row">
-                    	<div class="col-md-7">
-                    		<table class="table table-hover">
-                    			<thead>
-                    				<th>No</th>
-                    				<th>Title</th>
-                    				<th>Writer</th>
-                    				<th>Date</th>
-                    				<th>Hit</th>
-                    				
-                    			</thead>
-                    			<tbody>
-                    				<c:forEach items="${list}" var="dto">
-                    					<td>${dto.board_id}</td>
-                    					<td><a href="./detail?board_id=${dto.board_id}">${dto.board_title}</a></td>
-                    					<td>${dto.board_writer}</td>
-                    					<td>${dto.board_date}</td>
-                    					<td>${dto.board_hit}</td>
-                    				</c:forEach>
-                    			</tbody>
-                    			
-                    		
-                    		</table>
-                    		
-                    		<a class="btn btn-danger" href="./write">Write</a>
+                    	<div>
+                    		<div class="card">
+							  <div class="card-header">
+							    ${dto.board_title}
+							  </div>
+							  <div class="card-body">
+							    ${dto.board_contents}
+							  </div>
+							</div>
                     	
                     	</div>
-                    	
                     </div>
 				 
 				 </div>
