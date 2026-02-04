@@ -28,6 +28,10 @@
 							  <div class="card-body">
 							    ${dto.board_contents}
 							  </div>
+							  
+							  <div class="card-footer">
+							  	<a href="./update?board_id=${dto.board_id}">Update</a>
+							  </div>
 							</div>
                     	
                     	</div>

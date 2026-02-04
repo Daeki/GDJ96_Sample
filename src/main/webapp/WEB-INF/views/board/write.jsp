@@ -21,19 +21,20 @@
                     </ol>
                     <div class="row">
                     	<div class="col-md-4 offset-md-1">
-                    		<form action="./write" method="post">
+                    		<form method="post">
+                    			<input type="hidden" value="${dto.board_id}" name="board_id">
 							  <div class="mb-3">
 							    <label for="title" class="form-label">Title</label>
-							    <input type="text" class="form-control" id="title" name="board_title">
+							    <input type="text" value="${dto.board_title}" class="form-control" id="title" name="board_title">
 							    
 							  </div>
 							  <div class="mb-3">
 							    <label for="writer" class="form-label">Writer</label>
-							    <input type="text" class="form-control" id="writer" name="board_writer">
+							    <input type="text" value="${dto.board_writer}" class="form-control" id="writer" name="board_writer">
 							  </div>
 							  <div class="mb-3">
 							    <label for="contents" class="form-label">Contents</label>
-							    <textarea rows="5" cols="10" class="form-control" id="contents" name="board_contents"></textarea>
+							    <textarea rows="5" cols="10" class="form-control" id="contents" name="board_contents">${dto.board_contents}</textarea>
 							  </div>
 							  <button type="submit" class="btn btn-primary">Submit</button>
 							</form>

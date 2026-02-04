@@ -43,6 +43,18 @@ public class NoticeController extends HttpServlet {
 				List<BoardDTO> ar = noticeService.getList();
 				request.setAttribute("list", ar);
 				break;
+			case "/update":
+				BoardDTO noticeDTO = new NoticeDTO();
+				noticeDTO.setBoard_id(Long.parseLong(request.getParameter("board_id")));
+				
+				noticeDTO = noticeService.getDetail(noticeDTO);
+				
+				request.setAttribute("dto", noticeDTO);
+				
+				path="/WEB-INF/views/board/write.jsp";
+				
+				break;
+				
 			case "/write":
 				path="/WEB-INF/views/board/write.jsp";
 				break;
@@ -80,8 +92,32 @@ public class NoticeController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String url = request.getRequestURI(); // /notice/list,
+		
+		url = url.substring(url.lastIndexOf("/"));
+		String path="";
+		NoticeDTO noticeDTO = new NoticeDTO();
+		try {
+			if(url.equals("/write")) {
+				noticeDTO.setBoard_title(request.getParameter("board_title"));
+				noticeDTO.setBoard_writer(request.getParameter("board_writer"));
+				noticeDTO.setBoard_contents(request.getParameter("board_contents"));
+				int result = noticeService.insert(noticeDTO);
+				path="./list";
+			}else if(url.equals("/update")) {
+				noticeDTO.setBoard_title(request.getParameter("board_title"));
+				noticeDTO.setBoard_id(Long.parseLong(request.getParameter("board_id")));
+				noticeDTO.setBoard_contents(request.getParameter("board_contents"));
+				int result = noticeService.update(noticeDTO);
+				path="./detail?board_id="+noticeDTO.getBoard_id();
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		response.sendRedirect(path);
+		
 	}
 
 }

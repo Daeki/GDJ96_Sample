@@ -32,11 +32,13 @@
                     			</thead>
                     			<tbody>
                     				<c:forEach items="${list}" var="dto">
+                    				<tr>
                     					<td>${dto.board_id}</td>
                     					<td><a href="./detail?board_id=${dto.board_id}">${dto.board_title}</a></td>
                     					<td>${dto.board_writer}</td>
                     					<td>${dto.board_date}</td>
                     					<td>${dto.board_hit}</td>
+                    				</tr>	
                     				</c:forEach>
                     			</tbody>
                     			

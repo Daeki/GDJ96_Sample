@@ -25,14 +25,24 @@ public class NoticeService implements BoardService{
 
 	@Override
 	public int insert(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con = DBConnector.getConnection();
+		
+		int result = noticeDAO.insert(con, boardDTO);
+		
+		con.close();
+		
+		return result;
 	}
 
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con = DBConnector.getConnection();
+		
+		int result = noticeDAO.update(con, boardDTO);
+		
+		con.close();
+		
+		return result;
 	}
 
 	@Override

@@ -39,14 +39,29 @@ public class NoticeDAO implements BoardDAO {
 
 	@Override
 	public int insert(Connection con, BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+			String sql="insert into notice values(0 ,?, ?, ?, now(), 0)";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, boardDTO.getBoard_title());
+			st.setString(2, boardDTO.getBoard_contents());
+			st.setString(3, boardDTO.getBoard_writer());
+			
+			int result = st.executeUpdate();
+			
+		return result;
 	}
 
 	@Override
 	public int update(Connection con, BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql ="update notice set board_title=?, board_contents=? where board_id=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, boardDTO.getBoard_title());
+		st.setString(2, boardDTO.getBoard_contents());
+		st.setLong(3, boardDTO.getBoard_id());
+		
+		
+		int result = st.executeUpdate();	
+		
+		return result;
 	}
 
 	@Override
