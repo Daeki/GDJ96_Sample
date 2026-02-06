@@ -15,7 +15,7 @@ public class NoticeDAO implements BoardDAO {
 	public List<BoardDTO> getList(Connection con) throws Exception {
 		List<BoardDTO> ar = new ArrayList<BoardDTO>();
 		
-		String sql ="SELECT * FROM NOTICE ORDER BY board_id DESC";
+		String sql ="SELECT * FROM notice ORDER BY board_id DESC";
 		
 		PreparedStatement st = con.prepareStatement(sql);
 		
