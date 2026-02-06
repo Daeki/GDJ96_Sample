@@ -31,6 +31,9 @@ public class NoticeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setAttribute("cat", "Notice");
+		request.setAttribute("sub", "0");
+		
 		String url = request.getRequestURI(); // /notice/list,
 		
 		url = url.substring(url.lastIndexOf("/"));
@@ -92,6 +95,9 @@ public class NoticeController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("cat", "Notice");
+		request.setAttribute("sub", "0");
+		
 		String url = request.getRequestURI(); // /notice/list,
 		
 		url = url.substring(url.lastIndexOf("/"));

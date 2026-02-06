@@ -15,7 +15,7 @@
 		<div id="layoutSidenav_content">
 			<main>
 				 <div class="container-fluid px-4">
-					<h1 class="mt-4">Dashboard</h1>
+					<h1 class="mt-4">${cat}</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
@@ -35,7 +35,9 @@
 							  		<input type="hidden" name="board_id" value="${dto.board_id}">
 							  		<button class="btn btn-danger">DELETE</button>
 							  	</form>
+							  	<c:if test="${sub eq '1'}">
 							  	<a class="btn btn-success" href="./reply?board_id=${dto.board_id}">답글</a>
+							  	</c:if>
 							  </div>
 							</div>
                     	
