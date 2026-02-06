@@ -1,17 +1,21 @@
 package com.winter.app.board.qna;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.winter.app.board.BoardDTO;
+import com.winter.app.board.BoardService;
 import com.winter.app.util.DBConnector;
 
-public class QnaService {
+public class QnaService implements BoardService {
 	
 	private QnaDAO qnaDAO;
 	
 	public QnaService() {
 		this.qnaDAO = new QnaDAO();
 	}
+	
+	
 	
 	public int reply(BoardDTO boardDTO)throws Exception{
 		//boardDTO : board_id => 부모의 글번호
@@ -40,6 +44,56 @@ public class QnaService {
 		
 		return result;
 		
+	}
+	
+	@Override
+	public List<BoardDTO> getList() throws Exception {
+		Connection con = DBConnector.getConnection();
+		List<BoardDTO> ar = qnaDAO.getList(con);
+		con.close();
+		return ar;
+	}
+
+	@Override
+	public int insert(BoardDTO boardDTO) throws Exception {
+		Connection con = DBConnector.getConnection();
+		
+		int result = qnaDAO.insert(con, boardDTO);
+		
+		result = qnaDAO.refUpdate(con, boardDTO);
+		
+		con.close();
+		
+		return result;
+	}
+
+	@Override
+	public int update(BoardDTO boardDTO) throws Exception {
+		Connection con = DBConnector.getConnection();
+		
+		int result = qnaDAO.update(con, boardDTO);
+		
+		con.close();
+		
+		return result;
+	}
+
+	@Override
+	public int delete(BoardDTO boardDTO) throws Exception {
+		Connection con = DBConnector.getConnection();
+		
+		int result = qnaDAO.delete(con, boardDTO);
+		con.close();		
+		return result;
+	}
+
+	@Override
+	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
+		Connection con = DBConnector.getConnection();
+		
+		boardDTO = qnaDAO.getDetail(con, boardDTO);
+		con.close();		
+		return boardDTO;
 	}
 
 }

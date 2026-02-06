@@ -7,6 +7,7 @@ import java.util.List;
 import com.winter.app.board.BoardDTO;
 import com.winter.app.board.qna.QnaDAO;
 import com.winter.app.board.qna.QnaDTO;
+import com.winter.app.board.qna.QnaService;
 import com.winter.app.util.DBConnector;
 
 public class QnaDAOTest {
@@ -15,8 +16,27 @@ public class QnaDAOTest {
 		System.out.println("Qna Test");
 		
 		QnaDAOTest qnaDAOTest = new QnaDAOTest();
-		qnaDAOTest.insertTest();
+		qnaDAOTest.replyTest();
 
+	}
+	
+	public void replyTest() {
+		QnaService qnaService = new QnaService();
+		BoardDTO boardDTO = new QnaDTO();
+		boardDTO.setBoard_title("reply title2");
+		boardDTO.setBoard_contents("reply conents2");
+		boardDTO.setBoard_writer("reply writer2");
+		boardDTO.setBoard_id(3L);
+		
+		try {
+			qnaService.reply(boardDTO);
+			System.out.println("finish");
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public void insertTest() {
