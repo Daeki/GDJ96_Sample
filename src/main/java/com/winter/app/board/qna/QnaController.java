@@ -74,6 +74,12 @@ public class QnaController extends HttpServlet {
 				}
 				
 				break;
+			case "/reply":
+				BoardDTO b = new QnaDTO();
+				b.setBoard_id(Long.parseLong(request.getParameter("board_id")));
+				request.setAttribute("dto", b);
+				path="/WEB-INF/views/board/write.jsp";
+				
 			default:
 				
 				
@@ -114,6 +120,14 @@ public class QnaController extends HttpServlet {
 				qnaDTO.setBoard_id(Long.parseLong(request.getParameter("board_id")));
 				int result = qnaService.delete(qnaDTO);
 				path="./list";
+			}else if(url.equals("/reply")) {
+				qnaDTO.setBoard_id(Long.parseLong(request.getParameter("board_id")));
+				qnaDTO.setBoard_title(request.getParameter("board_title"));
+				qnaDTO.setBoard_writer(request.getParameter("board_writer"));
+				qnaDTO.setBoard_contents(request.getParameter("board_contents"));
+				int result = qnaService.reply(qnaDTO);
+				path="./list";
+				
 			}
 		}catch (Exception e) {
 			// TODO: handle exception

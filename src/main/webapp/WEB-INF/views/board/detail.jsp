@@ -30,11 +30,12 @@
 							  </div>
 							  
 							  <div class="card-footer">
-							  	<a href="./update?board_id=${dto.board_id}">Update</a>
+							  	<a class="btn btn-primary" href="./update?board_id=${dto.board_id}">Update</a>
 							  	<form action="./delete" method="post">
 							  		<input type="hidden" name="board_id" value="${dto.board_id}">
-							  		<button>DELETE</button>
+							  		<button class="btn btn-danger">DELETE</button>
 							  	</form>
+							  	<a class="btn btn-success" href="./reply?board_id=${dto.board_id}">답글</a>
 							  </div>
 							</div>
                     	

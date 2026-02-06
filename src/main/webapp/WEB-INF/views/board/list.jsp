@@ -28,13 +28,20 @@
                     				<th>Writer</th>
                     				<th>Date</th>
                     				<th>Hit</th>
+                    			
+                    			
                     				
                     			</thead>
                     			<tbody>
                     				<c:forEach items="${list}" var="dto">
                     				<tr>
                     					<td>${dto.board_id}</td>
-                    					<td><a href="./detail?board_id=${dto.board_id}">${dto.board_title}</a></td>
+                    					<td>
+                    					<c:catch>
+                    					<c:forEach begin="1" end="${dto.board_depth}">--</c:forEach>
+                    					</c:catch>
+                    					<a href="./detail?board_id=${dto.board_id}">${dto.board_title}
+                    					</a></td>
                     					<td>${dto.board_writer}</td>
                     					<td>${dto.board_date}</td>
                     					<td>${dto.board_hit}</td>
